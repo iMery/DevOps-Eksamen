@@ -3,8 +3,8 @@ name: Terraform Deployment Workflow
 on:
   push:
     branches:
-      - main   # Trigger terraform apply for main branch
-      - "*"    # Trigger terraform plan for all other branches
+      - main  
+      - "*"    
 
 jobs:
   terraform:
@@ -16,11 +16,11 @@ jobs:
       contents: read
 
     steps:
-      # Sjekk ut koden
+      
       - name: Check out repository
         uses: actions/checkout@v3
 
-      # Sett opp Terraform
+      
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:

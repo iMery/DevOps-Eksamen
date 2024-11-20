@@ -1,5 +1,3 @@
-# OUTPUTS.TF - Outputs for debugging and testing
-
 output "sqs_queue_url" {
   description = "URL of the SQS queue"
   value       = aws_sqs_queue.maqueue.id
