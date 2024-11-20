@@ -1,0 +1,49 @@
+name: Terraform Deployment Workflow
+
+on:
+  push:
+    branches:
+      - main   # Trigger terraform apply for main branch
+      - "*"    # Trigger terraform plan for all other branches
+
+jobs:
+  terraform:
+    name: Terraform Job
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      # Sjekk ut koden
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      # Sett opp Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0
+
+      # Auth for AWS
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      # Terraform Init
+      - name: Initialize Terraform
+        run: terraform init
+
+      # Plan when pushed to other branchs
+      - name: Terraform Plan
+        if: github.ref != 'refs/heads/main'
+        run: terraform plan
+
+      # Apply only when pushed to main
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve
