@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >-
+  SAM application to generate and upload images using AWS Lambda.
+
+Parameters:
+  BucketName:
+    Type: String
+    Default: "pgr301-couch-explorers"
+
+  KandidatNr:
+    Type: String
+    Default: "28"
+
+Resources:
+  GenerateImageApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: GeneratePictureApiMaka082
+      StageName: Prod
+      EndpointConfiguration: REGIONAL
+
+  GenerateImageFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./  # Points to the root directory where application.py is located
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      Timeout: 15
+      Environment:
+        Variables:
+          BUCKET_NAME: !Ref BucketName
+          KANDIDAT_NR: !Ref KandidatNr
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /generate
+            Method: post
+            RestApiId: !Ref GenerateImageApi
+      Policies:
+        - S3WritePolicy:
+            BucketName: !Ref BucketName
+        - Statement:
+            Effect: Allow
+            Action:
+              - bedrock:InvokeModel
+            Resource:
+              - arn:aws:bedrock:us-east-1::foundation-model/amazon.titan-image-generator-v1

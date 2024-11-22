@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket         = "pgr301-2024-terraform-state"
-    key            = "lambda-sqs-integration/terraform.tfstate"
+    key            = "28/terraform.tfstate"
     region         = "eu-west-1"
   }
 }

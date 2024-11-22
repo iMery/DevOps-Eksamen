@@ -13,7 +13,7 @@ variable "lambda_function_name" {
 variable "lambda_s3_bucket" {
   description = "Navn på S3 bucket for Lambda kode"
   type        = string
-  default     = "pgr301-2024-lambda-code"
+  default     = "pgr301-couch-explorers"
 }
 
 variable "lambda_s3_key" {
