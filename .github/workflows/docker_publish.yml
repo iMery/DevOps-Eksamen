@@ -20,6 +20,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
+      working-directory: java_sqs_client
       run: docker build -t maka082/java-sqs-client .
 
     - name: Tag Docker image
