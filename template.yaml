@@ -25,7 +25,7 @@ Resources:
     Properties:
       CodeUri: ./  # Points to the root directory where application.py is located
       Handler: app.lambda_handler
-      Runtime: python3.8
+      Runtime: python3.9
       Timeout: 15
       Environment:
         Variables:
