@@ -3,8 +3,8 @@ name: Terraform Deployment Workflow
 on:
   push:
     branches:
-      - main  
-      - "*"    
+      - main      # Triggers workflow on pushes to the main branch
+      - "*"       # Triggers workflow on pushes to any branch
 
 jobs:
   terraform:
@@ -16,17 +16,17 @@ jobs:
       contents: read
 
     steps:
-      
+      # Step 1: Checkout the code
       - name: Check out repository
         uses: actions/checkout@v3
 
-      
+      # Step 2: Set up Terraform
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.5.0
 
-      # Auth for AWS
+      # Step 3: Configure AWS credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -34,16 +34,22 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
 
-      # Terraform Init
+      # Step 4: Initialize Terraform
       - name: Initialize Terraform
-        run: terraform init
+        run: |
+          cd infra
+          terraform init
 
-      # Plan when pushed to other branchs
+      # Step 5: Terraform Plan for non-main branches
       - name: Terraform Plan
         if: github.ref != 'refs/heads/main'
-        run: terraform plan
+        run: |
+          cd infra
+          terraform plan
 
-      # Apply only when pushed to main
+      # Step 6: Terraform Apply for main branch
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
-        run: terraform apply -auto-approve
+        run: |
+          cd infra
+          terraform apply -auto-approve
