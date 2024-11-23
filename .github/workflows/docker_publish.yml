@@ -21,10 +21,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build -t maka082/java-sqs-client ./java_sqs_client
-
-      - name: Tag Docker Image
-        run: docker tag maka082/java-sqs-client:latest maka082/java-sqs-client:latest
+        run: docker build -t maka082/java-sqs-client:latest ./java_sqs_client
 
   push:
     name: Push Docker Image
@@ -40,4 +37,3 @@ jobs:
 
       - name: Push Docker Image
         run: docker push maka082/java-sqs-client:latest
-
