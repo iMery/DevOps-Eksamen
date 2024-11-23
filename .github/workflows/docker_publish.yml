@@ -21,15 +21,17 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
+        working-directory: java_sqs_client   #My Dockerfile path
         run: docker build -t maka082/java-sqs-client .
 
       - name: Tag Docker Image
+        working-directory: java_sqs_client 
         run: docker tag maka082/java-sqs-client:latest maka082/java-sqs-client:latest
 
   push:
     name: Push Docker Image
     runs-on: ubuntu-latest
-    needs: build
+    needs: build 
 
     steps:
       - name: Log in to Docker Hub
@@ -39,4 +41,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker Image
+        working-directory: java_sqs_client  #My Dockerfile path
         run: docker push maka082/java-sqs-client:latest

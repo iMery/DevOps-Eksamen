@@ -1,55 +1,68 @@
-name: Terraform Deployment Workflow
+name: Multi-Job Workflow
 
 on:
   push:
     branches:
-      - main      # Triggers workflow on pushes to the main branch
-      - "*"       # Triggers workflow on pushes to any branch
+      - main
+      - "*"
 
 jobs:
-  terraform:
-    name: Terraform Job
+  terraform-init:
+    name: Initialize Terraform
     runs-on: ubuntu-latest
 
-    permissions:
-      id-token: write
-      contents: read
-
     steps:
-      # Step 1: Checkout the code
       - name: Check out repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up Terraform
-      - name: Setup Terraform
+      - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.9.0
 
-      # Step 3: Configure AWS credentials
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-1
-
-      # Step 4: Initialize Terraform
       - name: Initialize Terraform
         run: |
           cd infra
           terraform init
 
-      # Step 5: Terraform Plan for non-main branches
-      - name: Terraform Plan
-        if: github.ref != 'refs/heads/main'
+  terraform-plan:
+    name: Terraform Plan
+    needs: terraform-init  
+    runs-on: ubuntu-latest
+
+    if: github.ref != 'refs/heads/main'  #Runs when pushed to other branch but main
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.9.0
+
+      - name: Plan Terraform
         run: |
           cd infra
           terraform plan
 
-      # Step 6: Terraform Apply for main branch
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
+  terraform-apply:
+    name: Terraform Apply
+    needs: terraform-init  
+    runs-on: ubuntu-latest
+
+    if: github.ref == 'refs/heads/main'  #Run only if pushed to main
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.9.0
+
+      - name: Apply Terraform
         run: |
           cd infra
           terraform apply -auto-approve
