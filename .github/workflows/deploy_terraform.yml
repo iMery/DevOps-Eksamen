@@ -39,7 +39,7 @@ jobs:
         run: |
           cd infra
           terraform init
-      
+      #Terraform plan only when pushed to other branchs then main 
       - name: Terraform Plan
         if: github.ref != 'refs/heads/main'
         run: |
