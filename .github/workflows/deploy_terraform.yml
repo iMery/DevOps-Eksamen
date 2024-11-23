@@ -1,25 +1,32 @@
-name: Multi-Job Workflow
+name: Terraform Deployment
 
 on:
   push:
     branches:
-      - main
-      - "*"
+      - main    
+      - "*"       
 
 jobs:
-  terraform-init:
-    name: Initialize Terraform
+  terraform:
+    name: Deploying terraform
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write
+      contents: read
+
     steps:
+      
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Set up Terraform
+      
+      - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.9.0
 
+      
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -27,63 +34,20 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
 
+      
       - name: Initialize Terraform
         run: |
           cd infra
           terraform init
-
-  terraform-plan:
-    name: Terraform Plan
-    needs: terraform-init
-    runs-on: ubuntu-latest
-
-    if: github.ref != 'refs/heads/main'
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.9.0
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-1
-
-      - name: Plan Terraform
+      
+      - name: Terraform Plan
+        if: github.ref != 'refs/heads/main'
         run: |
           cd infra
           terraform plan
-
-  terraform-apply:
-    name: Terraform Apply
-    needs: terraform-init
-    runs-on: ubuntu-latest
-
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.9.0
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-1
-
-      - name: Apply Terraform
+      
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main'
         run: |
           cd infra
           terraform apply -auto-approve
