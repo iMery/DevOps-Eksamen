@@ -27,4 +27,5 @@ variable "lambda_s3_key" {
 variable "alarm_email" {
   description = "Email address that recives the cloudwatch alarm notifications"
   type        = string
+  default     = "makaaaa082@gmail.com" #My email where notifications will be sent
 }
