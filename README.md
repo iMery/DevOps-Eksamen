@@ -2,10 +2,21 @@
 DevOps eksamen 2024 - kandidatnr 28
 
 ## OPPGAVE 1
+**HTTP Endepunkt for Lambdafunksjonen:** 
+https://y2efwman4h.execute-api.eu-west-1.amazonaws.com/Prod/generate
+
+**For å teste APIet met POSTMAN:**
+1. Gå til postman
+2. Velg POST-metode og lim in URLen
+3. Legg til Body: `{ "prompt": "me on top of K2" }`
+4. Send og sjekk responsen. Et bilde skal være generert og lastet opp til `pgr301-couch-explorers` i folder `28/`
+
+**Lenke til kjørt Github actions workflow:** [Lenke til workflow](https://github.com/iMery/pgr301-eksamen/actions/runs/11992753845)
+
 
 ## OPPGAVE 2
-- **Deploy Terraform to main:** [Link to workflow](https://github.com/iMery/pgr301-eksamen/actions/runs/11983546334)
-- **Deploy Terraform to other branches:** [Link to workflow](https://github.com/iMery/pgr301-eksamen/actions/runs/11983812264)
+- **Deploy Terraform to main:** [Lenke til workflow](https://github.com/iMery/pgr301-eksamen/actions/runs/11983546334)
+- **Deploy Terraform to other branches:** [Lenke til workflow](https://github.com/iMery/pgr301-eksamen/actions/runs/11983812264)
 - **SQS URL:** [https://sqs.eu-west-1.amazonaws.com/244530008913/maqueue01](https://sqs.eu-west-1.amazonaws.com/244530008913/maqueue01)
   
 ## OPPGAVE 3

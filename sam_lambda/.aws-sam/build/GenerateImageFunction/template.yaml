@@ -23,7 +23,7 @@ Resources:
   GenerateImageFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: ./  # Points to the root directory where application.py is located
+      CodeUri: ./ # Ponts to the root directory where application.py is located
       Handler: app.lambda_handler
       Runtime: python3.8
       Timeout: 15

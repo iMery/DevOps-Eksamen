@@ -119,7 +119,7 @@ resource "aws_sns_topic_subscription" "alarm_subscription" {
 
 #Cloudwatch alarm 
 resource "aws_cloudwatch_metric_alarm" "sqs_oldest_message_alarm" {
-  alarm_name          = "SQSOldestMessageAgeHigh"
+  alarm_name          = "Oldest_message_Alarm_maka082"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 1
   metric_name         = "ApproximateAgeOfOldestMessage"
