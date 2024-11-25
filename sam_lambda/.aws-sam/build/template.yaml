@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: SAM application to generate and upload images using AWS Lambda.
+Description: SAM app that generates and uploads images using AWS Lambda.
 Parameters:
   BucketName:
     Type: String

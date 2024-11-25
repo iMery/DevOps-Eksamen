@@ -36,7 +36,7 @@ jobs:
           fi
 
       - name: Build SAM application
-        run: sam build --template sam_lambda/template.yaml
+        run: sam build
 
       - name: Deploy SAM application
         run: |
