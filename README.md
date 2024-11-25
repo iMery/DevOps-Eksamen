@@ -17,7 +17,7 @@ A.
 }
 
 ```
-4. Send og sjekk responsen. Et bilde skal være generert og lastet opp til `pgr301-couch-explorers` i folder `28/`
+5. Send og sjekk responsen. Et bilde skal være generert og lastet opp til `pgr301-couch-explorers` i folder `28/`
 
 B.
 **Lenke til kjørt Github actions workflow:** [Lenke til workflow](https://github.com/iMery/pgr301-eksamen/actions/runs/12017066121)
@@ -57,7 +57,7 @@ docker run -e AWS_ACCESS_KEY_ID=AKIAXXXX \
 ## OPPGAVE 4
 I denne oppgaven har jeg utvidet Terraform-koden ved å gjøre endringer i **variables.tf**, **main.tf** og **outputs.tf** for å sette opp CloudWatch-alarmen. Denne alarmen overvåker SQS metrikken **ApproximateAgeOfOldestMessage** og triggers når den eldeste meldingen i køren er mer enn 2 minutter gammel. Når alarmen utløses blir det varslet til en e-postadresse som er angitt i koden. Ved å bruke CloudWatch-alarm kan forsinkelser oppdages og håndteres raskt.
 
-**Lenke til CloudWatch alarmen:**[CloudWatch-alarmen](https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#alarmsV2:alarm/Oldest_message_Alarm_maka082?~(search~'maka))
+**Lenke til CloudWatch alarmen:** [CloudWatch-alarmen](https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#alarmsV2:alarm/Oldest_message_Alarm_maka082?~(search~'maka))
 
 
 
