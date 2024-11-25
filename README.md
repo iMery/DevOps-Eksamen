@@ -9,8 +9,14 @@ A.
 **For å teste APIet met POSTMAN:**
 1. Gå til postman
 2. Velg POST-metode og lim in URLen
-3. Legg til Body: 
-```{ "prompt": "me on top of K2" }```
+3. I headers må det legges til: 
+4. Legg til Body: `Content-Type: application/json`
+```
+{
+  "prompt": "me on top of a pyramid"
+}
+
+```
 4. Send og sjekk responsen. Et bilde skal være generert og lastet opp til `pgr301-couch-explorers` i folder `28/`
 
 B.
@@ -26,7 +32,7 @@ B.
 5. Når `terraform apply` kjøres kan SQS URLen som blir gitt ut brukes til å sende meldinger som genererer bilder og lagrer dem i S3-bucketen `pgr301-couch-explorers` i folder `images/`.
 
 - **Deploy Terraform to main:** [Lenke til workflow](https://github.com/iMery/pgr301-eksamen/actions/runs/11983546334) - `terraform apply` kjøres.
-- **Deploy Terraform to other branches:** [Lenke til workflow](https://github.com/iMery/pgr301-eksamen/actions/runs/11983812264) `terraform plan` kjøres.
+- **Deploy Terraform to other branches:** [Lenke til workflow](https://github.com/iMery/pgr301-eksamen/actions/runs/11983812264) - `terraform plan` kjøres.
 - **SQS URL:** `https://sqs.eu-west-1.amazonaws.com/244530008913/maqueue01`
   
 ## OPPGAVE 3
@@ -48,7 +54,12 @@ docker run -e AWS_ACCESS_KEY_ID=AKIAXXXX \
 - **SQS URL:** `https://sqs.eu-west-1.amazonaws.com/244530008913/maqueue01`
 
 
-## OPPGAVE 4 
+## OPPGAVE 4
+I denne oppgaven har jeg utvidet Terraform-koden ved å gjøre endringer i **variables.tf**, **main.tf** og **outputs.tf** for å sette opp CloudWatch-alarmen. Denne alarmen overvåker SQS metrikken **ApproximateAgeOfOldestMessage** og triggers når den eldeste meldingen i køren er mer enn 2 minutter gammel. Når alarmen utløses blir det varslet til en e-postadresse som er angitt i koden. Ved å bruke CloudWatch-alarm kan forsinkelser oppdages og håndteres raskt.
+
+**Lenke til CloudWatch alarmen:**[CloudWatch-alarmen](https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#alarmsV2:alarm/Oldest_message_Alarm_maka082?~(search~'maka))
+
+
 
 ## OPPGAVE 5
 
