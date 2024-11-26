@@ -13,6 +13,7 @@ lambda.zip
 /java_sqs_client/apache-maven-3.9.5-bin.tar.gz
 
 #SAM
-/sam_lambda/.aws-sam
+/sam_lambda/.aws-sam/
+
 
 
