@@ -95,6 +95,7 @@ I denne oppgaven har jeg utvidet Terraform-koden ved å gjøre endringer i **var
 **Oppsummering:**
 
 Serverless-arkitektur gir raskere utvikling og utrulling, men kan bli fragmentert på grunn av mange små funksjoner. Mikrotjenester gir mer strukturert og kontrollert CI/CD-prosess, men krever mer administrasjon. 
+---
 
 ### 2. Observability (overvåkning):
 
@@ -126,6 +127,7 @@ Serverless-arkitektur gir raskere utvikling og utrulling, men kan bli fragmenter
 **Oppsummering:**
 
 Serverless-arkitektur gir enklere oppsett, men utfordrer helhetlig overvåkning. Mikrotjenester gir mer kontroll, men trenger mer innsats. 
+---
 
 ### 3. Skalerbarhet og kostnadskontroll
 
@@ -158,6 +160,7 @@ Serverless-arkitektur gir enklere oppsett, men utfordrer helhetlig overvåkning.
 **Oppsummering:**
 
 Serverless-arkitektur skalerer automatisk, krever minimal administrasjon og er kostnadseffektiv, men har begrenset kontroll og uforutsigbare kostnader. Mikrotjenestearkitektur gir fleksibel skalering og bedre kontroll, men er dyrere og krever komplekse verktøy.
+---
 
 ### 4. Eierskap og ansvar
 
