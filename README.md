@@ -81,7 +81,7 @@ I denne oppgaven har jeg utvidet Terraform-koden ved å gjøre endringer i **var
 
 **Mikrotjenestearkitektur**
 
-**Styrker: **
+**Styrker:**
 
 -	Uavhengige tjeneste gir mulighet for raskere oppdateringer og feilsøking.
 -	Verktøy som Docker kan brukes for å sikre at miljøet er likt i utvikling, testing og produksjon. 
