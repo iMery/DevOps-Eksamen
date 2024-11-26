@@ -9,7 +9,7 @@ lambda.zip
 #Target 
 /java_sqs_client/target/
 
-#Maven binary
+#Maven bin
 /java_sqs_client/apache-maven-3.9.5-bin.tar.gz
 
 #SAM
