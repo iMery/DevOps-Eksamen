@@ -5,15 +5,15 @@ import random
 import os
 import logging
 
-# Configure logging
+
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-# Initialize AWS clients
+
 bedrock_client = boto3.client("bedrock-runtime", region_name="us-east-1")
 s3_client = boto3.client("s3", region_name="eu-west-1")
 
-# Environment variables
+
 BUCKET_NAME = os.getenv("BUCKET_NAME")
 KANDIDAT_NR = os.getenv("KANDIDAT_NR")
 
