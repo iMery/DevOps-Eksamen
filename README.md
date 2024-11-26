@@ -9,8 +9,8 @@ A.
 **For å teste APIet met POSTMAN:**
 1. Gå til postman
 2. Velg POST-metode og lim in URLen
-3. I headers må det legges til: 
-4. Legg til Body: `Content-Type: application/json`
+3. I headers må det legges til: `Content-Type: application/json`
+4. Legg til Body: 
 ```
 {
   "prompt": "me on top of a pyramid"
@@ -43,7 +43,7 @@ Jeg valgte "latest" som tag fordi det sikrer at brukerne alltid får den nyeste 
 2. AWS-nøkler kreves: `AWS_ACCESS_KEY_ID`&`AWS_SECRET_ACCESS_KEY`
 3. Kopier og kjør kommandoen: 
 ```
-docker run -e AWS_ACCESS_KEY_ID=AKIAXXXX \
+docker run -e AWS_ACCESS_KEY_ID=XXXX \
            -e AWS_SECRET_ACCESS_KEY=XXXXXX \
            -e SQS_QUEUE_URL=https://sqs.eu-west-1.amazonaws.com/244530008913/maqueue01 \
            maka082/java-sqs-client "melding"
@@ -55,7 +55,8 @@ docker run -e AWS_ACCESS_KEY_ID=AKIAXXXX \
 
 
 ## OPPGAVE 4
-I denne oppgaven har jeg utvidet Terraform-koden ved å gjøre endringer i **variables.tf**, **main.tf** og **outputs.tf** for å sette opp CloudWatch-alarmen. Denne alarmen overvåker SQS metrikken **ApproximateAgeOfOldestMessage** og triggers når den eldeste meldingen i køren er mer enn 2 minutter gammel. Når alarmen utløses blir det varslet til en e-postadresse som er angitt i koden. Ved å bruke CloudWatch-alarm kan forsinkelser oppdages og håndteres raskt. Jeg fikk ikke til å legge et bilde av alarmen så jeg legger ved en link av den.
+I denne oppgaven har jeg utvidet Terraform-koden ved å gjøre endringer i **variables.tf**, **main.tf** og **outputs.tf** for å sette opp CloudWatch-alarmen. Denne alarmen overvåker SQS metrikken **ApproximateAgeOfOldestMessage** og triggers når den eldeste meldingen i køen er mer enn 2 minutter gammel. Når alarmen utløses blir det varslet til en e-postadresse som er angitt i koden. Ved å bruke CloudWatch-alarm kan forsinkelser oppdages og håndteres raskt. 
+**Jeg fikk ikke til å legge et bilde av alarmen så jeg legger ved en link av den.**
 
 **Lenke til CloudWatch alarmen:** [CloudWatch-alarmen](https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#alarmsV2:alarm/Oldest_message_Alarm_maka082?~(search~'maka))
 
@@ -174,7 +175,7 @@ Serverless-arkitektur skalerer automatisk, krever minimal administrasjon og er k
 **Styrker:**
 
 -	 Det er mindre ansvar for infrastruktur ettersom leverandører håndterer det. Det blir tatt hånd om oppdateringer og skalering og det frigjør tid for utviklere å fokusere på koden. 
--	Funksjoner som er automatiserte fir enklere administrasjon av ytelse og tilgjengelighet. 
+-	Funksjoner som er automatiserte gir enklere administrasjon av ytelse og tilgjengelighet. 
 -	Utviklere kan fokusere på optimalisering av applikasjonen mens leverandøren sikrer effektiv ressursbruk. 
 
 **Svakheter:**
