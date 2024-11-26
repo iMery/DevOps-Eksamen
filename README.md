@@ -65,7 +65,7 @@ I denne oppgaven har jeg utvidet Terraform-koden ved å gjøre endringer i **var
 
 **Mikrotjenestearkitektur** er en måte å bygge store applikasjoner ved å dele dem opp i små tjenester. Hver mikrotjeneste har en spesifikk oppgave og disse tjenestene jobber sammen for å få applikasjonen til å fungere.
 
-### 1. Automatisering og kontinuerlig levering (CI/CD):
+### 1. Automatisering og kontinuerlig levering (CI/CD)
 ---
 
 **Serverless-arkitektur**
@@ -99,7 +99,7 @@ I denne oppgaven har jeg utvidet Terraform-koden ved å gjøre endringer i **var
 Serverless-arkitektur gir raskere utvikling og utrulling, men kan bli fragmentert på grunn av mange små funksjoner. Mikrotjenester gir mer strukturert og kontrollert CI/CD-prosess, men krever mer administrasjon. 
 
 
-### 2. Observability (overvåkning):
+### 2. Observability (overvåkning)
 ---
 
 **Serverless-arkitektur**
@@ -200,6 +200,7 @@ Serverless-arkitektur skalerer automatisk, krever minimal administrasjon og er k
 **Oppsummering:**
 
 Serverless reduserer ansvar og kompleksitet, men gir mindre kontroll og avhengighet til leverandør. Mikrotjenester gir mer kontroll og fleksibilitet, men krever mer arbeid og økt ansvar.
+
 
 
 
