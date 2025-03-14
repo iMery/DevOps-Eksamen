@@ -1,5 +1,5 @@
 # PGR301 - Eksamen 2024
-DevOps eksamen 2024 - kandidatnr 28
+DevOps eksamen 2024 - kandidatnr 28 - Karakter: B
 
 ## OPPGAVE 1
 A. 
